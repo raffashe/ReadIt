@@ -1,4 +1,4 @@
-# read_it
+# readit
 
 A new Flutter project.
 

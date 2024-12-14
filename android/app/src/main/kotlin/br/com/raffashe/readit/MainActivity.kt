@@ -1,4 +1,4 @@
-package br.com.raffashe.read_it
+package br.com.raffashe.readit
 
 import io.flutter.embedding.android.FlutterActivity
 
