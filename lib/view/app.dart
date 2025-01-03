@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import 'home/home_page.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ReadIt extends StatelessWidget {
+  const ReadIt({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readit/widget/button_widget.dart';
 
-import '../constants/styles.dart';
+import '../../constants/styles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
