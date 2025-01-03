@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../constants/styles.dart';
 import 'package:readit/widget/button_widget.dart';
 
+import '../../viewmodel/scanned_viewmodel.dart';
+
 class ScannedText extends StatelessWidget {
   final String extractedText;
 
@@ -9,6 +11,8 @@ class ScannedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScannedTextViewModel viewModel = ScannedTextViewModel();
+
     return Scaffold(
       backgroundColor: AppStyles.bg,
       appBar: AppBar(
@@ -40,7 +44,7 @@ class ScannedText extends StatelessWidget {
                       ),
                       child: SingleChildScrollView(
                         child: Text(
-                          "Texto extraído aqui",
+                          extractedText,
                           style: AppStyles.subTextSecondary,
                         ),
                       ),
@@ -49,7 +53,12 @@ class ScannedText extends StatelessWidget {
             const SizedBox(height: 20),
             CustomButton(
               text: "Copiar Texto",
-              onTap: () {},
+              onTap: () {
+                viewModel.copyTextToClipboard(
+                  context: context,
+                  text: extractedText,
+                );
+              },
             ),
           ],
         ),

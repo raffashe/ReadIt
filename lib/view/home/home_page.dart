@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:readit/widget/button_widget.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../constants/styles.dart';
+import 'package:readit/widget/button_widget.dart';
+import '../../viewmodel/home_viewmodel.dart';
+import '../scan/scanned_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final HomeViewModel _viewModel = HomeViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +32,46 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+                "Selecione uma imagem para que possamos extrair e reconhecer o texto contido nela de forma rápida e precisa",
                 style: AppStyles.subTextSecondary,
               ),
             ),
-            CustomButton(text: "Acessar Galeria", onTap: () {}),
             const SizedBox(height: 20),
-            CustomButton(text: "Acessar Câmera", onTap: () {})
+            CustomButton(
+              text: "Acessar Galeria",
+              onTap: () {
+                _viewModel.processImageExtractText(
+                  imageSource: ImageSource.gallery,
+                  onTextExtracted: (recognizedText) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ScannedText(extractedText: recognizedText),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            CustomButton(
+              text: "Acessar Câmera",
+              onTap: () {
+                _viewModel.processImageExtractText(
+                  imageSource: ImageSource.camera,
+                  onTextExtracted: (recognizedText) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ScannedText(extractedText: recognizedText),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),
